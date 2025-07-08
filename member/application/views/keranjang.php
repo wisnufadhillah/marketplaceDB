@@ -1,4 +1,12 @@
 <div class="container">
+
+    <?php if (empty($keranjang)): ?>
+    <div class="text-bg-secondary p-3 my-3 lead">
+        Yahhh, Keranjang belanja masih kosong:(
+    </div>
+    <a href="<?php echo base_url('produk') ?>" class="btn btn-primary">Belanja Sekarang</a>
+    <?php endif ?>
+
     <?php foreach ($keranjang as $key => $per_penjual): ?>
     <div class="mb-5">
         <h3><?php echo $per_penjual['nama_member'] ?></h3>
@@ -19,8 +27,16 @@
             </tr>
             <?php endforeach ?>
         </table>
-        <a href="<?php echo base_url('keranjang/checkout/' . $per_penjual['id_member']) ?>"
-            class="btn btn-primary">Checkout</a>
+        <div class="row">
+            <div class="col-md-6 text-start">
+                <a href="<?php echo base_url('produk') ?>" class="btn btn-secondary">Belanja Lagi?</a>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="<?php echo base_url('keranjang/checkout/' . $per_penjual['id_member']) ?>"
+                    class="btn btn-primary">Checkout</a>
+            </div>
+        </div>
+
     </div>
     <?php endforeach ?>
 </div>

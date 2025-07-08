@@ -31,7 +31,7 @@ class Produk extends CI_Controller
 
 
 			$this->session->set_flashdata('pesan_sukses', 'Produk berhasil ditambahkan ke keranjang');
-			redirect('','refresh');
+			redirect('keranjang','refresh');
 		}
 		
 		$this->load->view('header');

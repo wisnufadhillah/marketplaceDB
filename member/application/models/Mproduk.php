@@ -12,7 +12,7 @@ class Mproduk extends CI_Model
 	function tampil_produk_terbaru()
 	{
 		$this->db->order_by("id_produk", "desc");
-		$q = $this->db->get("produk",4,0)->result_array();
+		$q = $this->db->get("produk", 4, 0)->result_array();
 		$d = $q;
 		return $d;
 	}
@@ -87,5 +87,20 @@ class Mproduk extends CI_Model
 		$q = $this->db->get("produk")->row_array();
 		$d = $q;
 		return $d;
+	}
+
+	function laporan_terjual($tglm, $tgls, $status)
+	{
+		$id_member_jual = $this->session->userdata('id_member');
+		$kuery = "SELECT id_produk, nama_beli, SUM(jumlah_beli) as jumlah_terjual, SUM(harga_beli) as nominal_terjual FROM `transaksi_detail` 
+		LEFT JOIN transaksi ON transaksi_detail.id_transaksi=transaksi.id_transaksi
+		WHERE id_member_jual='$id_member_jual'
+		AND tanggal_transaksi BETWEEN '$tglm' AND '$tgls'
+		AND status_transaksi='$status'
+		GROUP BY nama_beli";
+
+		$ambil = $this->db->query($kuery);
+		$data = $ambil->result_array();
+		return $data;
 	}
 }

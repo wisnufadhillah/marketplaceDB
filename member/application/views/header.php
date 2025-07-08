@@ -49,6 +49,11 @@
                                 <a class="dropdown-item" href="<?php echo base_url('seller/produk') ?>">Produk Saya</a>
                             </li>
                             <li>
+                                <a href="<?php echo base_url("seller/produk/laporan_terjual") ?>"
+                                    class="dropdown-item">Laporan
+                                    Produk</a>
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="<?php echo base_url('seller/transaksi') ?>">Penjualan
                                     Saya</a>
                             </li>
@@ -56,6 +61,11 @@
                                 <a href="<?php echo base_url("transaksi") ?>" class="dropdown-item">Pembelian Saya</a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url("home") ?>" class="nav-link">
+                            Dashboard
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="<?php echo base_url("akun") ?>" class="nav-link">
