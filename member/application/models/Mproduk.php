@@ -103,4 +103,12 @@ class Mproduk extends CI_Model
 		$data = $ambil->result_array();
 		return $data;
 	}
+	function cari($keyword = "")
+	{
+		$this->db->like("nama_produk", $keyword, 'BOTH');
+		$this->db->or_like("deskripsi_produk", $keyword, 'BOTH');
+		$q = $this->db->get("produk")->result_array();
+		$d = $q;
+		return $d;
+	}
 }
