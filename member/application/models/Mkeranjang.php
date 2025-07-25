@@ -70,24 +70,25 @@ class Mkeranjang extends CI_Model
         return $dk;
     }
 
-    function checkout($keranjang, $member_jual, $member_beli, $nama_ekspedisi, $ongkirterpilih){
+    function checkout($keranjang, $member_jual, $member_beli, $ongkirterpilih)
+    {
 
         $totalbelanja = 0;
         $totalberat = 0;
         foreach ($keranjang as $key => $value) {
-            $totalbelanja+=$value['jumlah'] * $value['harga_produk'];
-            $totalberat+=$value['jumlah'] * $value['berat_produk'];
+            $totalbelanja += $value['jumlah'] * $value['harga_produk'];
+            $totalberat += $value['jumlah'] * $value['berat_produk'];
         }
-         
-        $m['kode_transaksi'] = date('YmdHis').rand(1111,9999);
+
+        $m['kode_transaksi'] = date('YmdHis') . rand(1111, 9999);
         $m['id_member_beli'] = $member_beli['id_member'];
         $m['id_member_jual'] = $member_jual['id_member'];
-        $m['tanggal_transaksi'] = date('Y-m-d H:i:s');  
+        $m['tanggal_transaksi'] = date('Y-m-d H:i:s');
         $m['belanja_transaksi'] = $totalbelanja;
         $m['status_transaksi'] = "pesan";
-        $m['ongkir_transaksi'] = $ongkirterpilih['cost'][0]['value'];
-        $m['total_transaksi'] = $totalbelanja+$ongkirterpilih['cost'][0]['value'];
-        $m['bayar_transaksi'] = $totalbelanja+$ongkirterpilih['cost'][0]['value'];
+        $m['ongkir_transaksi'] = $ongkirterpilih['cost'];
+        $m['total_transaksi'] = $totalbelanja + $ongkirterpilih['cost'];
+        $m['bayar_transaksi'] = $totalbelanja + $ongkirterpilih['cost'];
         $m['distrik_pengirim'] = $member_jual['nama_distrik_member'];
         $m['nama_pengirim'] = $member_jual['nama_member'];
         $m['wa_pengirim'] = $member_jual['wa_member'];
@@ -96,11 +97,11 @@ class Mkeranjang extends CI_Model
         $m['nama_penerima'] = $member_beli['nama_member'];
         $m['wa_penerima'] = $member_beli['wa_member'];
         $m['alamat_penerima'] = $member_beli['alamat_member'];
-        $m['nama_ekspedisi'] = $nama_ekspedisi;
-        $m['layanan_ekspedisi'] = $ongkirterpilih['description'];  
-        $m['estimasi_ekspedisi'] = $ongkirterpilih['cost'][0]['value'];
+        $m['nama_ekspedisi'] = $ongkirterpilih['name'];
+        $m['layanan_ekspedisi'] = $ongkirterpilih['description'];
+        $m['estimasi_ekspedisi'] = $ongkirterpilih['etd'];
         $m['berat_ekspedisi'] = $totalberat;
- 
+
         $this->db->insert('transaksi', $m);
 
         $id_transaksi = $this->db->insert_id();

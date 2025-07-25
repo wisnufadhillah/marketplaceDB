@@ -42,15 +42,17 @@
         </div>
         <div class="col-md-4">
             <h4>Pengiriman</h4>
-            <form action="" method="post">
-                <select name="ongkir" id="" class="form-control mb-3" required>
+            <form method="post">
+                <select name="ongkir" class="form-control mb-3" required>
                     <option value="">Pilih</option>
-                    <?php foreach ($biaya['costs'] as $key => $value): ?>
+                    <?php foreach ($biaya as $key => $value): ?>
 
                     <option value="<?php echo $key ?>">
+                        <?php echo $value['name'] ?>
+                        <?php echo $value['service'] ?>
                         <?php echo $value['description'] ?>
-                        <?php echo $value['cost'][0]['value'] ?>
-                        <?php echo $value['cost'][0]['etd'] ?>
+                        <?php echo number_format($value['cost']) ?>
+                        <?php echo $value['etd'] ?>
                     </option>
                     <?php endforeach ?>
                 </select>

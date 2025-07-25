@@ -49,7 +49,11 @@ class Keranjang extends CI_Controller
 
         $origin = $data['member_jual']['kode_distrik_member'];
         $destination = $data['member_beli']['kode_distrik_member'];
+
+
         $this->load->model('Mongkir');
+
+
         $data['biaya'] = $this->Mongkir->biaya($origin, $destination, $totalberat);
 
 
@@ -58,10 +62,10 @@ class Keranjang extends CI_Controller
         if ($this->form_validation->run() == TRUE) {
 
             $ongkir = $this->input->post('ongkir');
-            $ongkirterpilih = $data['biaya']['costs'][$ongkir];
+            $ongkirterpilih = $data['biaya'][$ongkir];
 
 
-            $id_transaksi = $this->Mkeranjang->checkout($data['keranjang'], $data['member_jual'], $data['member_beli'], $data['biaya']['name'], $ongkirterpilih);
+            $id_transaksi = $this->Mkeranjang->checkout($data['keranjang'], $data['member_jual'], $data['member_beli'], $ongkirterpilih);
 
             $this->session->set_flashdata('pesan_sukses', 'Transaksi berhasil, silahkan lakukan pembayaran');
             redirect('transaksi/detail/' . $id_transaksi, 'refresh');
