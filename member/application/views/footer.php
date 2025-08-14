@@ -33,7 +33,7 @@
 
 
 <footer class="bg-light text-center py-3 mt-5">
-    <div class="">copyright &copy; 2024. Amikom</div>
+    <div class="">&copy; MarketKu 2025. All Rights Reserved</div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
@@ -45,20 +45,20 @@
 <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
 <script>
-new DataTable('#tabelku');
+    new DataTable('#tabelku');
 </script>
 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php if ($this->session->flashdata('pesan_sukses')) : ?>
-<script>
-swal("Sukses!", "<?php echo $this->session->flashdata('pesan_sukses'); ?>", "success");
-</script>
+    <script>
+        swal("Sukses!", "<?php echo $this->session->flashdata('pesan_sukses'); ?>", "success");
+    </script>
 <?php endif; ?>
 <?php if ($this->session->flashdata('pesan_gagal')) : ?>
-<script>
-swal("Gagal !", "<?php echo $this->session->flashdata('pesan_gagal'); ?>", "error");
-</script>
+    <script>
+        swal("Gagal !", "<?php echo $this->session->flashdata('pesan_gagal'); ?>", "error");
+    </script>
 <?php endif; ?>
 </body>
 

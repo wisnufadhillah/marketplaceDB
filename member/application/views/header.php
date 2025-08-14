@@ -16,7 +16,13 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a href="" class="navbar-brand">Member</a>
+            <div class="d-flex align-items-center">
+                <a href="<?php echo base_url(); ?>" class="navbar-brand d-flex align-items-center">
+                    <img src="<?php echo base_url('public/images/MarketKu.png'); ?>" alt="MarketKu Logo" height="40"
+                        class="me-2">
+                </a>
+            </div>
+
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#naff">
                 <span class="navbar-toggler-icon"></span>
             </button>
